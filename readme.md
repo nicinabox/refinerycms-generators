@@ -1,6 +1,6 @@
 # RefineryCMS Generators
 
-## Engine Generator
+<h2 id='engines'>Engine Generator</h2>
 
 The Refinery generator is a standard Rails generator that functions just like the scaffold generator. It allows you to quickly add new managed sections to the Refinery backend and get the front end views for free.
 
