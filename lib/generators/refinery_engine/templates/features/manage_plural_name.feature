@@ -8,14 +8,14 @@ Feature: <%= plural_name.titleize %>
     Given I am a logged in refinery user
     And I have no <%= plural_name %>
 <% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>
-  @<%= plural_name %>-list
+  @<%= plural_name %>-list @list
   Scenario: <%= plural_name.titleize %> List
    Given I have <%= plural_name %> titled UniqueTitleOne, UniqueTitleTwo
    When I go to the list of <%= plural_name %>
    Then I should see "UniqueTitleOne"
    And I should see "UniqueTitleTwo"
 
-  @<%= plural_name %>-valid
+  @<%= plural_name %>-valid @valid
   Scenario: Create Valid <%= singular_name.titleize %>
     When I go to the list of <%= plural_name %>
     And I follow "Add New <%= singular_name.titleize %>"
@@ -24,7 +24,7 @@ Feature: <%= plural_name.titleize %>
     Then I should see "'This is a test of the first string field' was successfully added."
     And I should have 1 <%= singular_name %>
 
-  @<%= plural_name %>-invalid
+  @<%= plural_name %>-invalid @invalid
   Scenario: Create Invalid <%= singular_name.titleize %> (without <%= title.name %>)
     When I go to the list of <%= plural_name %>
     And I follow "Add New <%= singular_name.titleize %>"
@@ -43,7 +43,7 @@ Feature: <%= plural_name.titleize %>
     And I should be on the list of <%= plural_name %>
     And I should not see "A <%= title.name %>"
 
-  @<%= plural_name %>-list
+  @<%= plural_name %>-duplicate @duplicate
   Scenario: Create Duplicate <%= singular_name.titleize %>
     Given I only have <%= plural_name %> titled UniqueTitleOne, UniqueTitleTwo
     When I go to the list of <%= plural_name %>
@@ -53,7 +53,7 @@ Feature: <%= plural_name.titleize %>
     Then I should see "There were problems"
     And I should have 2 <%= plural_name %>
 
-  @<%= plural_name %>-delete
+  @<%= plural_name %>-delete @delete
   Scenario: Delete <%= singular_name.titleize %>
     Given I only have <%= plural_name %> titled UniqueTitleOne
     When I go to the list of <%= plural_name %>
