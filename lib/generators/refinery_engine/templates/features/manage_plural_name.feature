@@ -39,7 +39,7 @@ Feature: <%= plural_name.titleize %>
     And I follow "Edit this <%= singular_name %>" within ".actions"
     Then I fill in "<%= title.name.titleize %>" with "A different <%= title.name %>"
     And I press "Save"
-    Then I should see "'A different <%= title.name %>' was successfully saved."
+    Then I should see "'A different <%= title.name %>' was successfully updated."
     And I should be on the list of <%= plural_name %>
     And I should not see "A <%= title.name %>"
 
