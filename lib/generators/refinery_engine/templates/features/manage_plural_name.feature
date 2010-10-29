@@ -32,6 +32,17 @@ Feature: <%= plural_name.titleize %>
     Then I should see "<%= title.name.titleize %> can't be blank"
     And I should have 0 <%= plural_name %>
 
+  @<%= plural_name %>-edit @edit
+  Scenario: Edit Existing <%= singular_name.titleize %>
+    Given I have <%= plural_name %> titled "A <%= title.name %>"
+    When I go to the list of <%= plural_name %>
+    And I follow "Edit this <%= singular_name %>" within ".actions"
+    Then I fill in "<%= title.name.titleize %>" with "A different <%= title.name %>"
+    And I press "Save"
+    Then I should see "'A different <%= title.name %>' was successfully saved."
+    And I should be on the list of <%= plural_name %>
+    And I should not see "A <%= title.name %>"
+
   @<%= plural_name %>-list
   Scenario: Create Duplicate <%= singular_name.titleize %>
     Given I only have <%= plural_name %> titled UniqueTitleOne, UniqueTitleTwo
