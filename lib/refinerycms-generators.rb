@@ -50,6 +50,13 @@ module Refinery
           end
         end
       end
+
+      config.after_initialize do
+        ::Refinery::Plugin.register do |plugin|
+          plugin.name = "refinery_generators"
+          plugin.hide_from_menu = true
+        end
+      end
     end
   end
 end
