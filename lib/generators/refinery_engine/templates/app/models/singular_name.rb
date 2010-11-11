@@ -4,6 +4,12 @@ class <%= class_name %> < ActiveRecord::Base
   <% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>
   validates_presence_of :<%= title.name %>
   validates_uniqueness_of :<%= title.name %>
+  <% else %>
+  # def title was created automatically because you didn't specify a string field
+  # when you ran the refinery_engine generator. Love, Refinery CMS.
+  def title
+    "Override def title in vendor/engines/<%= plural_name %>/app/models/<%= singular_name %>.rb"
+  end
   <% end -%>
 <% attributes.collect{|a| a if a.type.to_s == 'image'}.compact.uniq.each do |a| -%>
 
