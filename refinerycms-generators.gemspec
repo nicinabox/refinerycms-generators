@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-generators}
   s.version           = %q{0.9.9}
-  s.date              = %q{2010-10-27}
+  s.date              = %q{2010-11-12}
   s.summary           = %q{Core generators for the Refinery CMS project.}
   s.description       = %q{Core generators for Refinery CMS including refinery_engine.}
   s.homepage          = %q{http://refinerycms.com}
@@ -10,6 +10,13 @@ Gem::Specification.new do |s|
   s.require_paths     = %w(lib)
 
   s.files             = [
+    'features',
+    'features/engine_generator.feature',
+    'features/step_definitions',
+    'features/step_definitions/engine_generator_steps.rb',
+    'features/step_definitions/generator_steps.rb',
+    'features/step_definitions/support',
+    'features/step_definitions/support/paths.rb',
     'lib',
     'lib/gemspec.rb',
     'lib/generators',
@@ -64,7 +71,8 @@ Gem::Specification.new do |s|
     'lib/generators/refinery_engine/templates/refinerycms-plural_name.gemspec',
     'lib/generators/refinery_engine/USAGE',
     'lib/refinerycms-generators.rb',
-    'readme.md'
+    'readme.md',
+    'refinerycms-generators.gemspec'
   ]
   s.require_path = 'lib'
 end
