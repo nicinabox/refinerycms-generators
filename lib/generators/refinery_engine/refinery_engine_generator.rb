@@ -65,7 +65,7 @@ class RefineryEngineGenerator < Rails::Generators::NamedBase
       end
 
       # Update the gem file
-      unless self.behavior == :revoke
+      if self.behavior != :revoke and !self.options['pretend']
         unless Rails.env.test?
           Rails.root.join('Gemfile').open('a') do |f|
             f.write "\ngem 'refinerycms-#{plural_name}', '1.0', :path => 'vendor/engines', :require => '#{plural_name}'"
@@ -82,7 +82,7 @@ class RefineryEngineGenerator < Rails::Generators::NamedBase
           puts "rake db:migrate"
           puts "------------------------"
         end
-      else
+      elsif self.behavior == :revoke
         lines = Rails.root.join('Gemfile').open('r').read.split("\n")
         Rails.root.join('Gemfile').open('w').puts(lines.reject {|l|
           l =~ %r{refinerycms-#{plural_name}}
