@@ -1,5 +1,7 @@
 # RefineryCMS Generators
 
+Currently there are two generators, ``refinery_engine`` and ``refinery_form``. Read more about each below.
+
 ## Engine Generator
 
 The Refinery generator is a standard Rails generator that functions just like the scaffold generator. It allows you to quickly add new managed sections to the Refinery backend and get the front end views for free.
@@ -44,3 +46,26 @@ Now you have a fully managed products section in Refinery, nice.
 If you want to modify your generated engine you need to understand the basic structure of how they work.
 
 See: [The Structure of an Engine](http://github.com/resolve/refinerycms/blob/master/vendor/refinerycms/core/engines.md)
+
+## Forms Generator
+
+Generates a custom forms based engine for Refinery automatically.
+It works very similarly to the Refinery Engine generator.
+
+The first string attribute should always be the one which is the title or name field in your model.
+
+There must be at least one attribute.
+
+### Additional Supported Field Types
+
+  All field types that are supported by the Refinery Engine generator are supported
+  with the addition of these form specific ones:
+
+    radio           - creates a set of radio buttons based off Model::FIELD_NAMES
+    checkbox        - creates a checkbox for true/false values.
+    select          - creates a select list with options using Model::FIELD_NAMES
+
+### Example
+
+    rails generate refinery_form job_inquiry name:string message:text job_type:radio brochure:checkbox
+
