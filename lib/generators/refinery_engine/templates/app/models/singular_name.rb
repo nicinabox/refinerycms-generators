@@ -2,8 +2,7 @@ class <%= class_name %> < ActiveRecord::Base
 
   acts_as_indexed :fields => [:<%= attributes.collect{ |attribute| attribute.name if attribute.type.to_s =~ /string|text/ }.compact.uniq.join(", :") %>]
   <% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>
-  validates_presence_of :<%= title.name %>
-  validates_uniqueness_of :<%= title.name %>
+  validates :<%= title.name %>, :presence => true, :uniqueness => true
   <% else %>
   # def title was created automatically because you didn't specify a string field
   # when you ran the refinery_engine generator. Love, Refinery CMS.
