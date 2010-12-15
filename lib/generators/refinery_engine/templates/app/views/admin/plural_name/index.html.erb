@@ -26,7 +26,7 @@
       <li>
         <%%= render :partial => "/shared/admin/search",
                     :locals => {
-                      :url => admin_<%= plural_name %>_url
+                      :url => admin_<%= plural_name %><%= "_index" if plural_name == singular_name%>_url
                     } %>
       </li>
     <%% end %>
@@ -37,12 +37,12 @@
   <%% if !searching? and <%= class_name %>.count > 1 and Admin::<%= class_name.pluralize %>Controller.sortable? %>
     <li>
       <%%= link_to t('.reorder', :what => "<%= singular_name.titleize.pluralize %>"),
-                   admin_<%= plural_name %>_url,
+                   admin_<%= plural_name %><%= "_index" if plural_name == singular_name%>_url,
                    :id => "reorder_action",
                    :class => "reorder_icon" %>
 
       <%%= link_to t('.reorder_done', :what => "<%= singular_name.titleize.pluralize %>"),
-                   admin_<%= plural_name %>_url,
+                   admin_<%= plural_name %><%= "_index" if plural_name == singular_name%>_url,
                    :id => "reorder_action_done",
                    :style => "display: none;",
                    :class => "reorder_icon" %>

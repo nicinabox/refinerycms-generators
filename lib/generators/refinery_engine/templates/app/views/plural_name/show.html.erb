@@ -21,7 +21,7 @@
 <aside>
   <h2><%%= t('.other') %></h2>
   <ul id="<%= plural_name %>">
-    <%% @<%= plural_name %>.each do |<%= singular_name %>| %>
+    <%% @<%= "all_" if plural_name == singular_name%><%= plural_name %>.each do |<%= singular_name %>| %>
       <li>
         <%%= link_to <%= singular_name %><% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>.<%= title.name %><% else %>.title<% end %>, <%= singular_name %>_url(<%= singular_name %>) %>
       </li>

@@ -20,7 +20,7 @@ class <%= class_name.pluralize %>Controller < ApplicationController
 protected
 
   def find_all_<%= plural_name %>
-    @<%= plural_name %> = <%= class_name %>.find(:all, :order => "position ASC")
+    @<%= "all_" if plural_name == singular_name %><%= plural_name %> = <%= class_name %>.find(:all, :order => "position ASC")
   end
 
   def find_page
