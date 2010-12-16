@@ -1,6 +1,6 @@
 module NavigationHelpers
   module Refinery
-    module <%= class_name.pluralize %>
+    module <%= class_name.pluralize %><%= 'Engine' if plural_name == singular_name %>
       def path_to(page_name)
         case page_name
         when /the list of <%= plural_name %>/
