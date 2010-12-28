@@ -44,7 +44,7 @@ module Refinery
           end
         end
 
-        unless self.silence_puts
+        unless self.silence_puts || self.behavior == :revoke
           puts "------------------------"
           puts "Now run:"
           puts "rake db:migrate"

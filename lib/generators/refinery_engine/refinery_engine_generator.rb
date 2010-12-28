@@ -88,7 +88,7 @@ class RefineryEngineGenerator < Rails::Generators::NamedBase
           l =~ %r{refinerycms-#{plural_name}}
         }.join("\n"))
 
-        migration_files = Dir.glob(File.expand_path('../templates/db/migrate/*.rb', __FILE__)).collect{|m|
+        migration_files = Dir.glob(File.expand_path('../templates/db/migrate/*.rb', __FILE__)).sort.collect{|m|
           m.gsub('plural_name', plural_name).gsub('singular_name', singular_name).split(File::SEPARATOR).last.split('_')[1..-1].join('_')
         }
         if (migration_paths = Dir[Rails.root.join('db', 'migrate', "*#{migration_files.join(',')}")]).any?
