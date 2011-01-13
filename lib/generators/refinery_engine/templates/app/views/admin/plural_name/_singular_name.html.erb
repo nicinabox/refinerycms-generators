@@ -12,7 +12,7 @@
     <%%= link_to refinery_icon_tag("delete.png"), admin_<%= singular_name %>_path(<%= singular_name %>),
         :class => "cancel confirm-delete",
         :title => t('.delete'),
-        :confirm => t('shared.admin.delete.message', :title => <%= singular_name %><% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>.<%= title.name %><% else %>.title<% end %>),
+        :confirm => t('message', :scope => 'shared.admin.delete', :title => <%= singular_name %><% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>.<%= title.name %><% else %>.title<% end %>),
         :method => :delete %>
   </span>
 </li>
