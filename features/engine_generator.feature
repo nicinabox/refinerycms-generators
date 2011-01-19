@@ -16,7 +16,7 @@ Feature: Engine generation
     And I should have a file "vendor/engines/cucumber_product_tests/app/models/cucumber_product_test.rb"
     And I should have a file "vendor/engines/cucumber_product_tests/config/routes.rb"
     And I should have a file "vendor/engines/cucumber_product_tests/config/locales/en.yml"
-    And I should have a file "vendor/engines/cucumber_product_tests/lib/cucumber_product_tests.rb"
+    And I should have a file "vendor/engines/cucumber_product_tests/lib/refinerycms-cucumber_product_tests.rb"
     And I should have a file "vendor/engines/cucumber_product_tests/app/views/admin/cucumber_product_tests/_form.html.erb"
     And I should have a file "vendor/engines/cucumber_product_tests/app/views/admin/cucumber_product_tests/_sortable_list.html.erb"
     And I should have a file "vendor/engines/cucumber_product_tests/app/views/admin/cucumber_product_tests/edit.html.erb"
