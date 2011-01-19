@@ -6,7 +6,7 @@ class RefineryEngineGenerator < Rails::Generators::NamedBase
 
   include Rails::Generators::Migration
 
-  source_root File.expand_path('../templates', __FILE__)
+  source_root Pathname.new(File.expand_path('../templates', __FILE__))
   argument :attributes, :type => :array, :default => [], :banner => "field:type field:type"
 
   def generate
@@ -15,9 +15,7 @@ class RefineryEngineGenerator < Rails::Generators::NamedBase
         engine = engine.name.pluralize
       end
 
-      Dir.glob(File.expand_path('../templates/**/**', __FILE__), File::FNM_DOTMATCH).sort.reject{|f|
-        File.directory?(f)
-      }.each do |path|
+      Pathname.glob(Pathname.new(self.class.source_root).join('**', '**')).reject{|f| f.directory?}.sort.each do |path|
         unless (engine_path = engine_path_for(path, engine)).nil?
           template path, engine_path
         end
@@ -116,7 +114,7 @@ protected
 
   def engine_path_for(path, engine)
     engine_path = "vendor/engines/#{engine.present? ? engine : plural_name}/"
-    path = path.gsub(File.dirname(__FILE__) + "/templates/", engine_path)
+    path = path.to_s.gsub(File.expand_path('../templates', __FILE__), engine_path)
 
     path = path.gsub("plural_name", plural_name)
     path = path.gsub("singular_name", singular_name)
