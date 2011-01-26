@@ -3,7 +3,7 @@ Given /^I have no <%= plural_name %>$/ do
 end
 
 <% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? -%>
-Given /^I (only )?have <%= plural_name %> titled "?([^"]*)"?$/ do |only, titles|
+Given /^I (only )?have <%= plural_name %> titled "?([^\"]*)"?$/ do |only, titles|
   <%= class_name %>.delete_all if only
   titles.split(', ').each do |title|
     <%= class_name %>.create(:<%= title.name %> => title)
@@ -11,6 +11,6 @@ Given /^I (only )?have <%= plural_name %> titled "?([^"]*)"?$/ do |only, titles|
 end
 <% end -%>
 
-Then /^I should have ([0-9]+) <%= plural_name %>?$/ do |count|
+Then /^I should have ([0-9]+) <%= plural_name.to_s.gsub(/ies$/, '(ies|y)') %>?$/ do |count|
   <%= class_name %>.count.should == count.to_i
 end
