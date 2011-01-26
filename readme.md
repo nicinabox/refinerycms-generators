@@ -1,5 +1,9 @@
 # RefineryCMS Generators
 
+## Dependencies
+
+This version requires RefineryCMS >= 0.9.9. Before that, these were built in but we've extracted them to provide greater flexibility for all future versions.
+
 ## Engine Generator
 
 The Refinery generator is a standard Rails generator that functions just like the scaffold generator. It allows you to quickly add new managed sections to the Refinery backend and get the front end views for free.
