@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-generators}
-  s.version           = %q{0.9.9.1}
-  s.date              = %q{2011-01-27}
+  s.version           = %q{0.9.9.2}
+  s.date              = %q{2011-01-28}
   s.summary           = %q{Core generators for the Refinery CMS project.}
   s.description       = %q{Core generators for Refinery CMS including refinery_engine.}
   s.homepage          = %q{http://refinerycms.com}
@@ -17,8 +17,8 @@ Gem::Specification.new do |s|
     'features/step_definitions',
     'features/step_definitions/engine_generator_steps.rb',
     'features/step_definitions/generator_steps.rb',
-    'features/step_definitions/support',
-    'features/step_definitions/support/paths.rb',
+    'features/support',
+    'features/support/paths.rb',
     'lib',
     'lib/gemspec.rb',
     'lib/generators',
