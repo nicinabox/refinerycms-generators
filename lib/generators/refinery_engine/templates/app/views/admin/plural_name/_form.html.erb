@@ -1,26 +1,49 @@
+<%
+  text_areas = attributes.reject{|a| a.field_type.to_s != 'text_area'}
+  generated_text_areas = false
+-%>
 <%%= form_for [:admin, @<%= singular_name %>] do |f| -%>
   <%%= render :partial => "/shared/admin/error_messages", :locals => {
-    :object => @<%= singular_name %>,
-    :include_object_name => true
-  } %>
+          :object => @<%= singular_name %>,
+          :include_object_name => true
+        } %>
   <% attributes.each_with_index do |attribute, index| %>
   <div class='field'>
+<% unless attribute.field_type.to_s == 'text_area' -%>
     <%%= f.label :<%= attribute.name %> -%>
+<% end -%>
 <% if attribute.type.to_s == 'image' -%>
     <%%= render :partial => "/shared/admin/image_picker", :locals => {
-            :f => f,
-            :field => :<%= "#{attribute.name}_id".gsub("_id_id", "_id") %>,
-            :image => @<%= singular_name %>.<%= attribute.name.gsub("_id", "") %>,
-            :toggle_image_display => false
-          } %>
-<% elsif attribute.type.to_s == 'resource' %>
+          :f => f,
+          :field => :<%= "#{attribute.name}_id".gsub("_id_id", "_id") %>,
+          :image => @<%= singular_name %>.<%= attribute.name.gsub("_id", "") %>,
+          :toggle_image_display => false
+        } %>
+<% elsif attribute.type.to_s == 'resource' -%>
     <%%= render :partial => "/shared/admin/resource_picker", :locals => {
-            :f => f,
-            :field => :<%= "#{attribute.name}_id".gsub("_id_id", "_id") %>,
-            :resource => @<%= singular_name %>.<%= attribute.name.gsub("_id", "") %>,
-          } %>
-<% elsif attribute.field_type.to_s == "text_area" -%>
-    <%%= f.text_area :<%= attribute.name %>, :rows => 20, :class => 'wymeditor widest' -%>
+          :f => f,
+          :field => :<%= "#{attribute.name}_id".gsub("_id_id", "_id") %>,
+          :resource => @<%= singular_name %>.<%= attribute.name.gsub("_id", "") %>,
+        } %>
+<% elsif attribute.field_type.to_s == "text_area" and !generated_text_areas -%>
+    <div id='page-tabs' class='clearfix ui-tabs ui-widget ui-widget-content ui-corner-all'>
+      <ul id='page_parts'>
+        <%% <%= text_areas.map{|t| t.name.to_sym}.inspect -%>.each_with_index do |part, part_index| %>
+          <li class='ui-state-default<%%= ' ui-state-active' if part_index == 0 %>'>
+            <%%= link_to part.to_s.titleize, "##{part}" %>
+          </li>
+        <%% end %>
+      </ul>
+
+      <div id='page_part_editors'>
+        <%% <%= text_areas.map{|t| t.name.to_sym}.inspect -%>.each do |part| %>
+          <div class='page_part' id='<%%= part %>'>
+            <%%= f.text_area part, :rows => 20, :class => 'wymeditor widest' -%>
+          </div>
+        <%% end %>
+      </div>
+    </div>
+<% generated_text_areas = true -%>
 <% else -%>
     <%%= f.<%= attribute.field_type -%> :<%= attribute.name -%><%= ", :class => 'larger widest'" if (index == 0 && attribute.field_type == :text_field) -%> -%>
 <% end -%>
@@ -34,3 +57,12 @@
                 :delete_confirmation => t('message', :scope => 'shared.admin.delete'<% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>, :title => @<%= singular_name %>.<%= title.name %><% end %>)
               } %>
 <%% end -%>
+<% if text_areas.any? -%>
+<%% content_for :javascripts do %>
+  <script>
+    $(document).ready(function(){
+      page_options.init(false, '', '');
+    });
+  </script>
+<%% end %>
+<% end -%>
