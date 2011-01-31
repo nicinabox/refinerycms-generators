@@ -3,11 +3,9 @@
     <h2><%%= t('results_for', :scope => 'shared.admin.search', :query => params[:search]) %></h2>
   <%% end %>
   <%% if @<%= plural_name %>.any? %>
-    <%%= will_paginate @<%= plural_name %> %>
-
-    <%%= render :partial => "sortable_list" %>
-
-    <%%= will_paginate @<%= plural_name %> %>
+    <div class='pagination_container'>
+      <%%= render :partial => '<%= plural_name %>' %>
+    </div>
   <%% else %>
     <p>
       <%% unless searching? %>
