@@ -3,31 +3,33 @@
 <%% end %>
 
 <%% content_for :body_content_left do %>
-  <% attributes.each do |attribute| %>
+<% attributes.each do |attribute| -%>
   <section>
     <h1><%= attribute.name.titleize %></h1>
-<p><% if attribute.type.to_s == 'image' -%>
-    <%%= image_fu @<%= singular_name %>.<%= attribute.name %>, nil %>
+    <p>
+<% if attribute.type.to_s == 'image' -%>
+      <%%= image_fu @<%= singular_name %>.<%= attribute.name %>, nil %>
 <% elsif attribute.type.to_s == 'resource' -%>
-    <%%= link_to <%= "'#{attribute.name}'" %>, @<%= singular_name %>.<%= attribute.name %>.url %>
+      <%%= link_to <%= "'#{attribute.name}'" %>, @<%= singular_name %>.<%= attribute.name %>.url %>
 <% else -%>
-    <%%=raw @<%= singular_name %>.<%= attribute.name %> %>
-<% end -%></p>
+      <%%=raw @<%= singular_name %>.<%= attribute.name %> %>
+<% end -%>
+    </p>
   </section>
-  <% end %>
+<% end -%>
 <%% end %>
 
 <%% content_for :body_content_right do %>
-<aside>
-  <h2><%%= t('.other') %></h2>
-  <ul id="<%= plural_name %>">
-    <%% @<%= "all_" if plural_name == singular_name%><%= plural_name %>.each do |<%= singular_name %>| %>
-      <li>
-        <%%= link_to <%= singular_name %><% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>.<%= title.name %><% else %>.title<% end %>, <%= singular_name %>_url(<%= singular_name %>) %>
-      </li>
-    <%% end %>
-  </ul>
-</aside>
+  <aside>
+    <h2><%%= t('.other') %></h2>
+    <ul id="<%= plural_name %>">
+      <%% @<%= "all_" if plural_name == singular_name%><%= plural_name %>.each do |<%= singular_name %>| %>
+        <li>
+          <%%= link_to <%= singular_name %><% if (title = attributes.detect { |a| a.type.to_s == "string" }).present? %>.<%= title.name %><% else %>.title<% end %>, <%= singular_name %>_url(<%= singular_name %>) %>
+        </li>
+      <%% end %>
+    </ul>
+  </aside>
 <%% end %>
 
 <%%= render :partial => "/shared/content_page" %>
