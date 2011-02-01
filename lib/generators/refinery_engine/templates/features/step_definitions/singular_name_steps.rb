@@ -11,6 +11,6 @@ Given /^I (only )?have <%= plural_name %> titled "?([^\"]*)"?$/ do |only, titles
 end
 <% end -%>
 
-Then /^I should have ([0-9]+) <%= plural_name.to_s.gsub(/ies$/, '(ies|y)') %>?$/ do |count|
+Then /^I should have ([0-9]+) <%= plural_name.to_s.gsub(/ies$/, '[y|ies]+') %>?$/ do |count|
   <%= class_name %>.count.should == count.to_i
 end
