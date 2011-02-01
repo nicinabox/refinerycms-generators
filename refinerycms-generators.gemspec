@@ -1,7 +1,7 @@
 Gem::Specification.new do |s|
   s.name              = %q{refinerycms-generators}
   s.version           = %q{0.9.9.2}
-  s.date              = %q{2011-01-28}
+  s.date              = %q{2011-02-02}
   s.summary           = %q{Core generators for the Refinery CMS project.}
   s.description       = %q{Core generators for Refinery CMS including refinery_engine.}
   s.homepage          = %q{http://refinerycms.com}
@@ -36,6 +36,7 @@ Gem::Specification.new do |s|
     'lib/generators/refinery_engine/templates/app/views/admin',
     'lib/generators/refinery_engine/templates/app/views/admin/plural_name',
     'lib/generators/refinery_engine/templates/app/views/admin/plural_name/_form.html.erb',
+    'lib/generators/refinery_engine/templates/app/views/admin/plural_name/_plural_name.html.erb',
     'lib/generators/refinery_engine/templates/app/views/admin/plural_name/_singular_name.html.erb',
     'lib/generators/refinery_engine/templates/app/views/admin/plural_name/_sortable_list.html.erb',
     'lib/generators/refinery_engine/templates/app/views/admin/plural_name/edit.html.erb',
